@@ -15,7 +15,7 @@ const pathname = usePathname()
             const isActive = pathname === link.route
             return (
               <li className={`${isActive && 'text-primary-500'} flex-center p-medium-16 whitespace-normal `} key={link.label}>
-                <Link className={isActive ? "" : ""} href={link.route}>
+                <Link href={link.route}>
                   {link.label}
                 </Link>
               </li>
