@@ -1,7 +1,7 @@
 import { Webhook } from "svix";
 import { headers } from "next/headers";
 import { WebhookEvent } from "@clerk/nextjs/server";
-import { createUser } from "@/lib/action/user.actions";
+import { createUser, deleteUser, updateUser } from "@/lib/action/user.actions";
 import { clerkClient } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
@@ -84,7 +84,7 @@ export async function POST(req: Request) {
     const user = {
       firstName: first_name,
       lastName: last_name,
-      username: username,
+      username: username!,
       photo: image_url
     }
     const updatedUser = await updateUser(id , user )
