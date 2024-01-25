@@ -2,10 +2,10 @@
 
 import { revalidatePath } from "next/cache";
 
-import { connectToDatabase } from "../mongodb/database";
-import User from "../mongodb/database/models/user.model";
-import Order from "../mongodb/database/models/order.model";
-import Event from "../mongodb/database/models/event.model";
+import { connectToDatabase } from "../database";
+import User from "../database/models/user.model";
+import Order from "../database/models/order.model";
+import Event from "../database/models/event.model";
 import { handleError } from "@/lib/utils";
 
 import { CreateUserParams, UpdateUserParams } from "@/types";
@@ -15,6 +15,7 @@ export async function createUser(user: CreateUserParams) {
     await connectToDatabase();
 
     const newUser = await User.create(user);
+    console.log(newUser)
     return JSON.parse(JSON.stringify(newUser));
   } catch (error) {
     handleError(error);
